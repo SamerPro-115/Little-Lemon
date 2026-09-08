@@ -208,7 +208,7 @@ nav {
     font-family: "Karla", sans-serif;
     font-size: 1.1rem;
     font-weight: 700;
-    color: #91ca62;
+    color: #495e57;
 }
 
 .specials-card-body p {
@@ -236,6 +236,78 @@ nav {
 }
 
 
+.testimonials {
+    max-width: 76rem;
+    margin: 0 auto;
+    padding: 3rem clamp(1.5rem, 7vw, 4rem) 4rem;
+}
+
+.testimonials h1 {
+    font-size: 2.8rem;
+    color: black;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.testimonials-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.testimonial-card {
+    background-color: #edefee;
+    border-radius: 0.6rem;
+    padding: 1.3rem 1.5rem 1.6rem;
+}
+
+.testimonial-rating {
+    display: flex;
+    gap: 0.15rem;
+    margin-bottom: 0.8rem;
+}
+
+.star {
+    font-size: 1.1rem;
+    color: #c9c9c9;
+}
+
+.star.filled {
+    color: #f4ce14;
+}
+
+.testimonial-person {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 0.8rem;
+}
+
+.testimonial-person img {
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.testimonial-name {
+    font-family: "Karla", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: black;
+}
+
+.testimonial-card p {
+    font-size: 0.9rem;
+    line-height: 1.3rem;
+    color: #333;
+}
+
+
+   
+
+
+
 
 
 @media (max-width: 992px) {
@@ -252,6 +324,9 @@ nav {
     }
       .specials-cards {
         grid-template-columns: 1fr;
+    }
+     .testimonials-cards {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -329,6 +404,9 @@ nav {
     .specials-header h1 {
         font-size: 2.2rem;
     }
+       .testimonials h1 {
+        font-size: 2.2rem;
+    }
 }
 
 
@@ -366,5 +444,8 @@ nav {
         height: 15rem;
 
         margin-top: 1.5rem;
+    }
+      .testimonials-cards {
+        grid-template-columns: 1fr;
     }
 }

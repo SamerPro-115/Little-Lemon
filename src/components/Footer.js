@@ -1,43 +1,46 @@
-import logo from "../assets/Logo.svg";
-
+import '../footer.css';
+import Logo from '../assets/footer-logo.png';
 
 export default function Footer() {
-    return (
-        <footer>
-            <section>
-                <img src={logo} width="100" height="100" />
-            </section>
+  return (
+    <footer className="footer">
+      <div className="footer-content">
+        <img
+          className="footer-logo"
+          src={Logo}
+          alt="Little Lemon logo"
+        />
 
-            <section>
-                <div>
-                    <h2>Doormat Navigation</h2>
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/">About</a></li>
-                        <li><a href="/">Menu</a></li>
-                        <li><a href="/">Reservation</a></li>
-                        <li><a href="/">Order Online</a></li>
-                        <li><a href="/">Login</a></li>
-                    </ul>
-                </div>
-                <div>
+        <div className="footer-col">
+          <h3>Doormat Navigation</h3>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Menu</a></li>
+            <li><a href="#">Reservations</a></li>
+            <li><a href="#">Order Online</a></li>
+            <li><a href="#">Login</a></li>
+          </ul>
+        </div>
 
-                    <h2>Contact</h2>
-                    <ul>
-                        <li><a href="/">Address</a></li>
-                        <li><a href="/">Phone Number</a></li>
-                        <li><a href="/">Email</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h2>Social Media Links</h2>
-                    <ul>
-                        <li><a href="/">Facebook</a></li>
-                        <li><a href="/">Instagram</a></li>
-                        <li><a href="/">Twitter</a></li>
-                    </ul>
-                </div>
-            </section>
-        </footer>
-    )
+        <div className="footer-col">
+          <h3>Contact</h3>
+          <ul>
+            <li>123 W Randolph St, Chicago, IL</li>
+            <li>(312) 555-0148</li>
+            <li>hello@littlelemon.com</li>
+          </ul>
+        </div>
+
+        <div className="footer-col">
+          <h3>Social Media Links</h3>
+          <ul>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Twitter</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  );
 }

@@ -1,6 +1,8 @@
 import salad from "../assets/greek salad.jpg";
 import burschetta from "../assets/bruchetta.svg";
 import lemonDessert from "../assets/lemon dessert.jpg";
+import Testimonials from "./Testimonials";
+import About from "./About";
 const specials = [
   {
     id: 1,
@@ -62,6 +64,9 @@ export default function Main() {
             </article>
           ))}
         </div>
+
+        <Testimonials />
+        <About />
       </section>
     </main>
   );

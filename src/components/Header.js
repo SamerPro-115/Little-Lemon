@@ -1,5 +1,5 @@
 
-
+import { Link } from "react-router-dom";
 import foodImage from "../assets/restauranfood.jpg";
 
 export default function Header() {
@@ -16,7 +16,7 @@ export default function Header() {
                             traditional recipes served with a modern twist.
                         </p>
 
-                        <a href="#">Reserve a Table</a>
+                       <Link to="/booking">Reserve a Table</Link>
                     </article>
                 </div>
 
