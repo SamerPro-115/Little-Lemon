@@ -1,12 +1,370 @@
-*{
+* {
     margin: 0;
-    padding:0;
+    padding: 0;
     box-sizing: border-box;
-    font-family: Markazi Text, cursive;
-        font-weight: Medium;
+    font-family: "Markazi Text", cursive;
+    font-weight: 500;
 }
 
-p{
-    font-family: Karla, sans-serif;
-    font-weight: Regular;
+p {
+    font-family: "Karla", sans-serif;
+    font-weight: 400;
+}
+
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem clamp(1.5rem, 7vw, 7rem);
+    background-color: white;
+    position: relative;
+}
+
+.logo {
+    width: clamp(9rem, 15vw, 15rem);
+    height: auto;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: clamp(1rem, 2vw, 2rem);
+}
+
+
+.nav-links li a {
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+    font-size: clamp(1rem, 1.4vw, 1.4rem);
+    white-space: nowrap;
+        transition: all 0.3s ease-in-out;
+
+}
+ .nav-links li a:hover {
+    color: #b49b1d;
+    font-size: 1.3rem;
+}
+.menu-btn {
+    display: none;
+    border: none;
+    background: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.hero {
+    width: 100%;
+    height: 16rem;
+    background-color: #495e57;
+    padding: 1rem 2rem
+}
+
+.hero-content {
+    max-width: 31rem;
+    height: 100%;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.hero-text {
+    width: 15rem;
+    padding-top: 1rem;
+}
+
+.hero h1 {
+    color: #f4ce14;
+    font-size: 3rem;
+    line-height: 1.8rem;
+}
+
+.hero h3 {
+    color: white;
+    font-size: 1.6rem;
+    padding-top: 0.2rem;
+    font-weight: 100;
+}
+
+.hero article {
+    margin-top: 0.7rem;
+}
+
+.hero p {
+    color: white;
+    font-size: 1rem;
+    font-weight: 100;
+    line-height: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero article a {
+    display: inline-block;
+
+    background-color: #f4ce14;
+    color: black;
+
+    text-decoration: none;
+    font-family: "Karla", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    padding: 0.45rem 1rem;
+    border-radius: 0.45rem;
+
+    margin-top: 0.5rem
+}
+
+.hero-image {
+    width: 16rem;
+    height: 16.7rem;
+
+    object-fit: cover;
+    border-radius: 0.6rem;
+
+    position: absolute;
+    right: -6rem;
+    top: 2rem;
+}
+
+
+.specials {
+    max-width: 76rem;
+    margin:  3rem auto;
+    padding: 3rem clamp(1.5rem, 7vw, 4rem);
+}
+
+.specials-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.specials-header h1 {
+    font-size: 2.8rem;
+    color: black;
+}
+
+.specials-btn {
+    display: inline-block;
+    background-color: #f4ce14;
+    color: black;
+
+    text-decoration: none;
+    font-family: "Karla", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+
+    padding: 0.7rem 1.6rem;
+    border-radius: 1rem;
+    white-space: nowrap;
+}
+
+.specials-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.8rem;
+}
+
+.specials-card {
+    background-color: #edefee;
+    border-radius: 0.6rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.specials-card img {
+    width: 100%;
+    height: 12.5rem;
+    object-fit: cover;
+}
+
+.specials-card-body {
+    padding: 1rem 1.3rem 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.specials-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.7rem;
+}
+
+.specials-card-top h2 {
+    font-size: 1.6rem;
+    color: black;
+}
+
+.specials-price {
+    font-family: "Karla", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #91ca62;
+}
+
+.specials-card-body p {
+    font-size: 0.95rem;
+    line-height: 1.35rem;
+    color: #333;
+    flex: 1;
+}
+
+.delivery-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1rem;
+
+    text-decoration: none;
+    font-family: "Karla", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: black;
+}
+
+.delivery-icon {
+    font-size: 1rem;
+}
+
+
+
+
+@media (max-width: 992px) {
+    nav {
+        padding: 1rem 2rem;
+    }
+
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .nav-links li a {
+        font-size: 1.1rem;
+    }
+      .specials-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 768px) {
+    nav {
+        padding: 1rem 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        width: 10rem;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+.nav-links {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 0 0.5rem;
+
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(-10px);
+
+    transition:
+        max-height 0.4s ease,
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.nav-links.active {
+    max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+    .nav-links li a {
+        font-size: 1.3rem;
+    }
+
+        .hero {
+        height: auto;
+        min-height: 14rem;
+    }
+
+    .hero-content {
+        padding: 0 1.5rem;
+    }
+
+    .hero-text {
+        width: 50%;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-image {
+        width: 10rem;
+        height: 11rem;
+        right: 1.5rem;
+    }
+      .specials-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .specials-header h1 {
+        font-size: 2.2rem;
+    }
+}
+
+
+@media (max-width: 500px) {
+    .hero {
+        min-height: 27rem;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 1.5rem 2rem;
+    }
+
+    .hero-text {
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        max-width: 20rem;
+        margin: 0.7rem auto;
+    }
+
+    .hero-image {
+        position: relative;
+        top: auto;
+        right: auto;
+
+        width: 14rem;
+        height: 15rem;
+
+        margin-top: 1.5rem;
+    }
 }
