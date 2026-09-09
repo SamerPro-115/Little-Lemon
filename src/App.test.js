@@ -1,5 +1,6 @@
 import { render, screen, fireEvent, act  } from '@testing-library/react';
 import BookingForm from './components/BookingForm';
+import { initializeTimes, updateTimes } from './components/BookingPage';
 
 const mockSubmitForm = jest.fn(() => true);
 
@@ -129,3 +130,46 @@ describe('Occasion field', () => {
     expect(occasionSelect.value).toBe('Birthday');
   });
 });
+
+
+
+
+// Mock the fetchAPI function to return a fixed set of times for testing
+
+beforeEach(() => {
+  global.fetchAPI = jest.fn(() => ['17:00', '18:00', '19:00']);
+});
+ 
+afterEach(() => {
+  delete global.fetchAPI;
+  jest.clearAllMocks();
+});
+ 
+test('initializeTimes returns a non-empty array of times', () => {
+  const times = initializeTimes();
+ 
+  expect(global.fetchAPI).toHaveBeenCalled();
+  expect(Array.isArray(times)).toBe(true);
+  expect(times.length).toBeGreaterThan(0);
+});
+ 
+test('updateTimes returns the times for the date included in the dispatched action', () => {
+  const initialState = ['17:00'];
+  const selectedDate = new Date('2026-12-25');
+ 
+  const action = { type: 'UPDATE_TIMES', date: selectedDate };
+  const newState = updateTimes(initialState, action);
+ 
+  expect(global.fetchAPI).toHaveBeenCalledWith(selectedDate);
+  expect(newState).toEqual(['17:00', '18:00', '19:00']);
+});
+ 
+test('updateTimes returns unchanged state for an unrecognized action type', () => {
+  const initialState = ['17:00'];
+  const action = { type: 'SOME_OTHER_ACTION' };
+ 
+  const newState = updateTimes(initialState, action);
+ 
+  expect(newState).toBe(initialState);
+});
+ 

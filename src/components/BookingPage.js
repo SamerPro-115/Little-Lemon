@@ -1,27 +1,33 @@
 /* global fetchAPI, submitAPI */
 import { useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 import BookingForm from "./BookingForm";
-import '../booking.css';
+import "../booking.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import { useNavigate } from "react-router-dom";
 
+// fetchAPI/submitAPI come from the <script> tag loaded in
+// public/index.html (see /public/api.js). They're globals, not module
+// imports — the comment above just tells ESLint they're intentionally
+// undefined-but-available at runtime.
 
 // Reducer holds the list of time slots available for whichever date
-// is currently selected. It starts out seeded with today's times
+// is currently selected. It starts out seeded with today's times.
+// The action carries the selected date; the reducer itself calls
+// fetchAPI to turn that date into a list of times.
 export function updateTimes(state, action) {
   switch (action.type) {
     case "UPDATE_TIMES":
-      return action.times;
+      return fetchAPI(action.date);
     default:
       return state;
   }
 }
- 
-function initializeTimes() {
+
+export function initializeTimes() {
   return fetchAPI(new Date());
 }
- 
+
 export default function BookingPage() {
   const [availableTimes, dispatch] = useReducer(
     updateTimes,
@@ -29,29 +35,30 @@ export default function BookingPage() {
     initializeTimes
   );
   const navigate = useNavigate();
- 
-  // Called by BookingForm whenever the date field changes.
+
+  // Called by BookingForm whenever the date field changes. The reducer
+  // itself calls fetchAPI(date) — this just passes the date along.
   function handleDateChange(dateString) {
-    const times = fetchAPI(new Date(dateString));
-    dispatch({ type: "UPDATE_TIMES", times });
+    dispatch({ type: "UPDATE_TIMES", date: new Date(dateString) });
   }
- 
+
   // Submits the reservation to the API. Returns true/false so
-  // BookingForm knows whether to reset the form or show an error 
-  // navigation to the confirmation page only happens on success
+  // BookingForm knows whether to reset the form or show an error
+  // navigation to the confirmation page only happens on success.
   function submitForm(formData) {
     const success = submitAPI(formData);
- 
+
     if (success) {
       navigate("/booking-confirmed");
     }
- 
+
     return success;
   }
+
   return (
     <>
-    <Navbar />
     
+    <Navbar  />
     <main>
       <section className="booking" id="booking">
         <div className="booking-grid">
@@ -73,7 +80,7 @@ export default function BookingPage() {
           </div>
 
           <div className="booking-card">
-             <BookingForm
+            <BookingForm
               availableTimes={availableTimes}
               onDateChange={handleDateChange}
               submitForm={submitForm}
@@ -83,7 +90,8 @@ export default function BookingPage() {
       </section>
     </main>
 
-<Footer />
-    </>
+  <Footer  />
+        </>
+
   );
 }
