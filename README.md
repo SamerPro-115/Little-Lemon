@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# Little Lemon
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A restaurant website for **Little Lemon**, a family-owned Mediterranean restaurant in Chicago. Built with React, featuring a marketing homepage, a table reservation system with live availability, and full client-side validation.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Homepage** — hero banner, weekly specials, customer testimonials, restaurant story, and footer.
+- **Table reservations** — a booking form with real-time available-time lookups per date, form validation, and a confirmation page on successful submission.
+- **Responsive design** — breakpoints at `992px` and `768px` for tablet and mobile layouts.
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+| Purpose | Library |
+|---|---|
+| UI | [React](https://react.dev/) |
+| Routing | [React Router](https://reactrouter.com/) |
+| Form state | [Formik](https://formik.org/) |
+| Form validation | [Yup](https://github.com/jquense/yup) |
+| Testing | Jest + [React Testing Library](https://testing-library.com/react) |
+| Tooling | Create React App (`react-scripts`) |
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
 
-### `npm run build`
+- Node.js 18+ and npm
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Running the app
 
-### `npm run eject`
+```bash
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Opens the app at [http://localhost:3000](http://localhost:3000).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Running tests
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm test
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## The Booking API
 
-## Learn More
+Reservation availability and submission are powered by two functions, `fetchAPI(date)` and `submitAPI(formData)`, loaded as **global functions** via a `<script>` tag in `public/index.html`:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```html
+<script src="/api.js"></script>
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+> **Note:** `public/api.js` is a local copy of the course-provided API. It's loaded from a root-relative path (`/api.js`) rather than directly from `raw.githubusercontent.com`, because GitHub's raw file host serves scripts with a `Content-Type`/`X-Content-Type-Options` combination that browsers refuse to execute. Hosting the file locally avoids that entirely.
 
-### Code Splitting
+Since these functions are globals rather than ES module imports, files that call them include an ESLint hint comment at the top:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```javascript
+/* global fetchAPI, submitAPI */
+```
 
-### Analyzing the Bundle Size
+### How availability works
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- On load, `BookingPage` seeds the list of available times by calling `fetchAPI(today)`.
+- Whenever the date field changes, `BookingPage` refetches with the new date, and the previously selected time is cleared (since it may not be valid for the new date).
+- The reservation form's Yup schema double-checks that the selected time still exists in the current list, as a second line of defense against stale state.
 
-### Making a Progressive Web App
+### How submission works
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- `BookingPage` owns a `submitForm(formData)` function that calls `submitAPI(formData)`.
+- On success, it navigates to `/booking-confirmed` via `useNavigate()`.
+- On failure, `BookingForm` shows an inline error and preserves the user's entered values rather than resetting the form.
 
-### Advanced Configuration
+## Testing Notes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- `fetchAPI`/`submitAPI` are stubbed via `global.fetchAPI = jest.fn(...)` in test files, since Jest's environment never loads the `public/index.html` script tag.
+- `react-router-dom`'s `useNavigate` is mocked at the module level in `BookingPage.test.js` so tests can assert on navigation without a real router.
+- Formik/Yup validation is asynchronous, so tests interacting with form fields wrap `fireEvent` calls in `act()`, and error-message assertions use `findByText` (which polls) rather than `getByText` (which doesn't).
 
-### Deployment
+## Known Environment Notes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- This project uses Create React App (`react-scripts@5.0.1`), which bundles an older version of Jest. Newer major versions of `react-router-dom` (v7+) rely on `package.json` export conventions that this bundled Jest can't always resolve, surfacing as `Cannot find module 'react-router/dom'` in tests even though the app runs fine in the browser. `react-router-dom` is pinned to `6.23.1` to avoid this — don't bump it to a newer major version without checking test compatibility first.
 
-### `npm run build` fails to minify
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is for educational purposes as part of a front-end development course.
