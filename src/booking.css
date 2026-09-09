@@ -1,0 +1,198 @@
+.booking {
+    background-color: #f8f7f2;
+    padding: 4.5rem clamp(1.5rem, 7vw, 4rem);
+}
+
+.booking-grid {
+    max-width: 68rem;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+}
+
+.booking-intro {
+    max-width: 26rem;
+}
+
+.booking-badge {
+    display: inline-block;
+    background-color: #495e57;
+    color: #f4ce14;
+
+    font-family: "Karla", sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+    padding: 0.35rem 0.9rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+}
+
+.booking-intro h1 {
+    font-size: 2.9rem;
+    color: black;
+    line-height: 2.7rem;
+}
+
+.booking-intro h2 {
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: #495e57;
+    margin-bottom: 1rem;
+}
+
+.booking-intro p {
+    font-family: "Karla", sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.4rem;
+    color: #333;
+    margin-bottom: 1.8rem;
+}
+
+.booking-image {
+    width: 100%;
+    max-width: 22rem;
+    height: 22rem;
+    object-fit: cover;
+    border-radius: 0.8rem;
+}
+
+.booking-card {
+    background-color: white;
+    border-radius: 0.9rem;
+    padding: 2.2rem clamp(1.5rem, 4vw, 2.6rem);
+    box-shadow: 0 1.2rem 2.5rem rgba(73, 94, 87, 0.18);
+}
+
+.booking-card .booking-form {
+    background-color: transparent;
+    padding: 0;
+}
+
+
+@media (max-width: 992px) {
+    .booking-grid {
+        gap: 2.5rem;
+    }
+
+    .booking-image {
+        height: 18rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .booking {
+        padding: 3.5rem 1.5rem;
+    }
+
+    .booking-grid {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .booking-intro {
+        max-width: 100%;
+    }
+
+    .booking-image {
+        margin: 0 auto;
+    }
+
+    .booking-card {
+        width: 100%;
+        max-width: 26rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.booking-form {
+    display: grid;
+    gap: 1.3rem;
+    background-color: #edefee;
+    border-radius: 0.6rem;
+    padding: 2rem clamp(1.5rem, 5vw, 2.5rem);
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.form-field label {
+    font-family: "Karla", sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: black;
+}
+
+.form-field input,
+.form-field select {
+    font-family: "Karla", sans-serif;
+    font-size: 0.95rem;
+    padding: 0.6rem 0.7rem;
+    border: 1px solid #b7bcba;
+    border-radius: 0.4rem;
+    background-color: white;
+    color: black;
+}
+
+.form-field input:focus,
+.form-field select:focus {
+    outline: none;
+    border-color: #495e57;
+}
+
+.form-field input.invalid,
+.form-field select.invalid {
+    border-color: #d64545;
+}
+
+.field-error {
+    font-family: "Karla", sans-serif;
+    font-size: 0.8rem;
+    color: #d64545;
+}
+
+.booking-submit {
+    margin-top: 0.5rem;
+
+    background-color: #f4ce14;
+    color: black;
+
+    font-family: "Karla", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+
+    border: none;
+    border-radius: 0.45rem;
+    padding: 0.75rem 1rem;
+
+    cursor: pointer;
+}
+
+.booking-submit:disabled {
+    background-color: #e6dca0;
+    color: #7a7a7a;
+    cursor: not-allowed;
+}
+
+.booking-submit:not(:disabled):hover {
+    background-color: #e3c113;
+}

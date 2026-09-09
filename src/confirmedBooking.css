@@ -1,0 +1,68 @@
+.confirmed-booking {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    background-color: #f8f7f2;
+}
+
+.confirmed-booking-card {
+    max-width: 26rem;
+    text-align: center;
+
+    background-color: white;
+    border-radius: 0.9rem;
+    padding: 3rem 2.2rem;
+    box-shadow: 0 1.2rem 2.5rem rgba(73, 94, 87, 0.18);
+}
+
+.confirmed-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+
+    background-color: #495e57;
+    color: #f4ce14;
+    font-size: 1.6rem;
+    font-weight: 700;
+
+    margin-bottom: 1rem;
+}
+
+.confirmed-booking-card h1 {
+    font-size: 2.4rem;
+    color: black;
+    margin-bottom: 0.8rem;
+}
+
+.confirmed-booking-card p {
+    font-family: "Karla", sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.4rem;
+    color: #333;
+    margin-bottom: 1.6rem;
+}
+
+.confirmed-home-link {
+    display: inline-block;
+
+    background-color: #f4ce14;
+    color: black;
+
+    text-decoration: none;
+    font-family: "Karla", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+
+    padding: 0.6rem 1.4rem;
+    border-radius: 0.45rem;
+}
+
+.confirmed-home-link:hover {
+    background-color: #e3c113;
+}
